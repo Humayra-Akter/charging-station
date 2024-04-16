@@ -8,7 +8,7 @@ export default function LoginScreen() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 50,
+        marginTop: 40,
       }}
     >
       <Image
@@ -16,9 +16,16 @@ export default function LoginScreen() {
         style={{ width: 100, height: 80, objectFit: "contain" }}
       />
       <Image
-        source={require("../../../assets/images/login.jpg")}
-        style={{ width: 400, height: 200, objectFit: "cover" }}
+        source={require("../../../assets/images/login.png")}
+        style={{ width: 400, height: 260, objectFit: "cover" }}
       />
+      <View style={{ padding: 20 }}>
+        <Text>Yur ultimate Charging Station finder App</Text>
+        <Text>
+          Find EV charging station near you, plan trip and so much more just in
+          one clck
+        </Text>
+      </View>
     </View>
   );
 }
