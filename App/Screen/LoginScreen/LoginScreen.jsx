@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
+import Colors from "../../Utils/Colors";
 
 export default function LoginScreen() {
   return (
@@ -17,11 +18,28 @@ export default function LoginScreen() {
       />
       <Image
         source={require("../../../assets/images/login.png")}
-        style={{ width: 400, height: 260, objectFit: "cover" }}
+        style={{ width: "100%", height: 260, objectFit: "cover" }}
       />
       <View style={{ padding: 20 }}>
-        <Text>Yur ultimate Charging Station finder App</Text>
-        <Text>
+        <Text
+          style={{
+            fontSize: 24,
+            fontFamily: "outfit-bold",
+            textAlign: "center",
+            marginTop: 20,
+          }}
+        >
+          Yur ultimate Charging Station finder App
+        </Text>
+        <Text
+          style={{
+            fontSize: 18,
+            fontFamily: "outfit",
+            textAlign: "center",
+            marginTop: 16,
+            color: Colors.GRAY,
+          }}
+        >
           Find EV charging station near you, plan trip and so much more just in
           one clck
         </Text>
