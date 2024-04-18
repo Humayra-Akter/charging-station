@@ -41,8 +41,28 @@ export default function LoginScreen() {
           }}
         >
           Find EV charging station near you, plan trip and so much more just in
-          one clck
+          one click
         </Text>
+        <View
+          style={{
+            backgroundColor: Colors.PRIMARY,
+            padding: 16,
+            display: "flex",
+            borderRadius: 99,
+            marginTop: 28,
+          }}
+        >
+          <Text
+            style={{
+              color: Colors.WHITE,
+              textAlign: "center",
+              fontFamily: "outfit",
+              fontSize: 16,
+            }}
+          >
+            Login with GOOGLE
+          </Text>
+        </View>
       </View>
     </View>
   );
