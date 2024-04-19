@@ -44,6 +44,9 @@ export default function LoginScreen() {
           one click
         </Text>
         <TouchableOpacity
+          onPress={() => {
+            console.log("button pressed");
+          }}
           style={{
             backgroundColor: Colors.PRIMARY,
             padding: 16,
