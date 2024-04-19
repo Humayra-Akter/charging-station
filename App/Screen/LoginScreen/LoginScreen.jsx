@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Colors from "../../Utils/Colors";
 
@@ -43,7 +43,7 @@ export default function LoginScreen() {
           Find EV charging station near you, plan trip and so much more just in
           one click
         </Text>
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: Colors.PRIMARY,
             padding: 16,
@@ -62,7 +62,7 @@ export default function LoginScreen() {
           >
             Login with GOOGLE
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
