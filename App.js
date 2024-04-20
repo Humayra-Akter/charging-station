@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import LoginScreen from "./App/Screen/LoginScreen/LoginScreen";
-import { ClerkProvider } from "@clerk/clerk-expo";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,8 +31,14 @@ export default function App() {
         "pk_test_d2lyZWQtbW9uc3Rlci03Ny5jbGVyay5hY2NvdW50cy5kZXYk"
       }
     >
-      <View style={styles.container}>
-        <LoginScreen />
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <SignedIn>
+          <Text>You are signed in</Text>
+        </SignedIn>
+        <SignedOut>
+          <LoginScreen />
+        </SignedOut>
+
         <StatusBar style="auto" />
       </View>
     </ClerkProvider>
