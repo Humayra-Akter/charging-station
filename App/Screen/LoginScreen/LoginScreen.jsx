@@ -1,8 +1,15 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import Colors from "../../Utils/Colors";
+import * as WebBrowser from "expo-web-browser";
+import { useWarmUpBrowser } from "../../../hooks/useWarmUpBrowser";
+import { useOAuth } from "@clerk/clerk-expo";
 
+WebBrowser.maybeCompleteAuthSession();
 export default function LoginScreen() {
+  useWarmUpBrowser();
+
+  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
   return (
     <View
       style={{
