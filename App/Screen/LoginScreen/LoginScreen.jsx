@@ -10,6 +10,22 @@ export default function LoginScreen() {
   useWarmUpBrowser();
 
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+
+  const onPress = async () => {
+    try {
+      const { createdSessionId, signIn, signUp, setActive } =
+        await startOAuthFlow();
+
+      if (createdSessionId) {
+        setActive({ session: createdSessionId });
+      } else {
+        // Use signIn or signUp for next steps such as MFA
+      }
+    } catch (err) {
+      console.error("OAuth error", err);
+    }
+  };
+
   return (
     <View
       style={{
@@ -51,9 +67,7 @@ export default function LoginScreen() {
           one click
         </Text>
         <TouchableOpacity
-          onPress={() => {
-            console.log("button pressed");
-          }}
+          onPress={onPress}
           style={{
             backgroundColor: Colors.PRIMARY,
             padding: 16,
