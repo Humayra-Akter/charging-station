@@ -8,8 +8,21 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="home" component={HomeScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen
+        name="home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: "Search",
+          tabBarIcon: ({ color, size }) => {
+            <Ionicons name="search-sharp" size={size} color={color} />;
+          },
+        }}
+      />
       <Tab.Screen name="favorite" component={FavoriteScreen} />
       <Tab.Screen name="profile" component={ProfileScreen} />
     </Tab.Navigator>

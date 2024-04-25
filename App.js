@@ -8,6 +8,7 @@ import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import { NativeScreenContainer } from "react-native-screens";
 import TabNavigation from "./App/Navigation/TabNavigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 SplashScreen.preventAutoHideAsync();
 const tokenCache = {
@@ -52,9 +53,9 @@ export default function App() {
     >
       <View style={styles.container} onLayout={onLayoutRootView}>
         <SignedIn>
-          <NativeScreenContainer>
+          <NavigationContainer>
             <TabNavigation />
-          </NativeScreenContainer>
+          </NavigationContainer>
         </SignedIn>
         <SignedOut>
           <LoginScreen />
