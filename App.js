@@ -2,13 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import LoginScreen from "./App/Screen/LoginScreen/LoginScreen";
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
 import { NativeScreenContainer } from "react-native-screens";
 import TabNavigation from "./App/Navigation/TabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
+import * as Location from "expo-location";
 
 SplashScreen.preventAutoHideAsync();
 const tokenCache = {
@@ -28,6 +29,29 @@ const tokenCache = {
   },
 };
 export default function App() {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location);
+    })();
+  }, []);
+
+  let text = "Waiting..";
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
   const [fontsLoaded, fontError] = useFonts({
     outfit: require("./assets/fonts/Outfit-Regular.ttf"),
     "outfit-medium": require("./assets/fonts/Outfit-SemiBold.ttf"),

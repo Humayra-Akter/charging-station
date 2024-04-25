@@ -26,7 +26,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow chargingstation to use your location."
+        }
+      ]
     ]
   }
 }
