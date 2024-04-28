@@ -10,6 +10,7 @@ import { NativeScreenContainer } from "react-native-screens";
 import TabNavigation from "./App/Navigation/TabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Location from "expo-location";
+import { UserLocationContext } from "./App/Context/UserLocationContext";
 
 SplashScreen.preventAutoHideAsync();
 const tokenCache = {
@@ -41,8 +42,7 @@ export default function App() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      console.log(location);
+      setLocation(location.coords);
     })();
   }, []);
 
@@ -75,18 +75,20 @@ export default function App() {
         "pk_test_d2lyZWQtbW9uc3Rlci03Ny5jbGVyay5hY2NvdW50cy5kZXYk"
       }
     >
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        <SignedIn>
-          <NavigationContainer>
-            <TabNavigation />
-          </NavigationContainer>
-        </SignedIn>
-        <SignedOut>
-          <LoginScreen />
-        </SignedOut>
+      <UserLocationContext.Provider value={{ location, setLocation }}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
+          <SignedIn>
+            <NavigationContainer>
+              <TabNavigation />
+            </NavigationContainer>
+          </SignedIn>
+          <SignedOut>
+            <LoginScreen />
+          </SignedOut>
 
-        <StatusBar style="auto" />
-      </View>
+          <StatusBar style="auto" />
+        </View>
+      </UserLocationContext.Provider>
     </ClerkProvider>
   );
 }
